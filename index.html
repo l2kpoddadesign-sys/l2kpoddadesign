@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>L2K & PODDA CREATIONS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
+body{
+color:white;
+text-align:center;
+background:linear-gradient(-45deg,#021B79,#0575E6,#000428,#004e92);
+background-size:400% 400%;
+animation:bgmove 12s infinite alternate;
+overflow-x: hidden;
+}
+@keyframes bgmove{0%{background-position:left}100%{background-position:right}}
+
+/* HEADER */
+header{
+padding:40px;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(10px);
+}
+.logo{width:220px;animation:float 3s infinite ease-in-out;}
+@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
+
+/* HERO */
+.hero{padding:100px 20px;}
+.hero h1{font-size:48px;color:#8ED6FF;text-shadow:0 0 20px #00c6ff;}
+.hero h2{margin-top:15px;font-weight:normal;font-size:22px;color:#dff6ff;}
+.btn{margin-top:30px;display:inline-block;padding:16px 40px;border-radius:40px;background:linear-gradient(45deg,#00c6ff,#0072ff);color:white;text-decoration:none;font-weight:bold;}
+
+/* SERVICES */
+.services{padding:70px 20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:25px;margin-top:30px;}
+.card{padding:25px;background:rgba(255,255,255,0.1);border-radius:15px;transition:0.4s;cursor:pointer;}
+.card:hover{transform:translateY(-10px);box-shadow:0 0 25px #00c6ff;}
+
+/* PORTFOLIO SLIDER */
+.portfolio{padding:80px 20px;}
+.slider{display:flex;overflow-x:auto;gap:15px;padding:20px;}
+.slider img{width:300px;border-radius:15px;transition:0.4s;cursor:pointer;}
+.slider img:hover{transform:scale(1.05);box-shadow:0 0 20px #00c6ff;}
+
+/* POPUP */
+#popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);text-align:center;z-index:1000;}
+#popup img{width:320px;margin-top:100px;border-radius:10px;}
+#popup .close{color:white;font-size:35px;position:absolute;top:20px;right:40px;cursor:pointer;}
+#popup .whatsapp-btn{display:block;margin:20px auto;padding:10px 25px;background:#25D366;color:white;text-decoration:none;border-radius:20px;}
+
+/* FOOTER */
+footer{padding:30px;background:rgba(0,0,0,0.6);margin-top:40px;}
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;padding:18px;border-radius:50%;font-size:22px;color:white;text-decoration:none;}
+
+/* SNOW EFFECT */
+#snow{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  z-index:9999;
+}
+
+/* FLAME EFFECT */
+#flame{
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 200px;
+  pointer-events: none;
+  z-index: 998;
+}
+</style>
+</head>
+
+<body>
+<!-- Snow canvas -->
+<canvas id="snow"></canvas>
+<!-- Flame canvas -->
+<canvas id="flame"></canvas>
+
+<header>
+<img src="logo.png" class="logo">
+</header>
+
+<section class="hero">
+<h1>L2K & PODDA CREATIONS</h1>
+<h2 id="typing">Creative | Professional | Trusted Graphics Design</h2>
+<a href="https://wa.me/94740682507?text=Hi%20I%20want%20to%20place%20an%20order" class="btn">Order Now</a>
+</section>
+
+<section class="services">
+<h1>Our Services</h1>
+<div class="grid">
+<div class="card" onclick="showDesign('account-post.jpg')">🎨 Logo Design</div>
+<div class="card" onclick="showDesign('social-media.jpg')">📱 Social Media Design</div>
+<div class="card" onclick="showDesign('youtube-thumb.jpg')">🖼 YouTube Thumbnails</div>
+<div class="card" onclick="showDesign('poster.jpg')">📢 Posters & Ads</div>
+<div class="card" onclick="showDesign('cover.jpg')">📘 Facebook / TikTok Covers</div>
+</div>
+</section>
+
+<section class="portfolio">
+<h1>Our Designs</h1>
+<div class="slider">
+<img src="https://via.placeholder.com/400">
+<img src="https://via.placeholder.com/400">
+<img src="https://via.placeholder.com/400">
+<img src="https://via.placeholder.com/400">
+</div>
+</section>
+
+<!-- POPUP -->
+<div id="popup">
+<span class="close" onclick="closePopup()">×</span>
+<img id="popup-img" src="">
+<a href="https://wa.me/94740682507?text=Hi%20I%20want%20to%20place%20an%20order" target="_blank" class="whatsapp-btn">💬 Order via WhatsApp</a>
+</div>
+
+<footer>
+<p>📱 0740682507 | 0722637889</p>
+<p>© 2026 L2K & PODDA CREATIONS</p>
+</footer>
+<a class="whatsapp" href="https://wa.me/94740682507">💬</a>
+
+<script>
+// Logo typing effect
+var text="Creative | Professional | Trusted Graphics Design";
+var i=0;
+function typing(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,50);
+}}
+typing();
+
+// Popup function
+function showDesign(image){
+alert("මේ වගේ ACCOUNT SELL POST එකක් ඔයාටත් හදාගන්න ඔනින් දැම්ම මැසේජ් එකක් දාන්න L2K & PODDA DESIGN 🤍😗");
+document.getElementById("popup-img").src=image;
+document.getElementById("popup").style.display="block";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+// SNOW EFFECT - Soft glowing + natural sway
+const canvas = document.getElementById('snow');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+});
+
+const numFlakes = 150;
+const flakes = [];
+
+for(let i = 0; i < numFlakes; i++){
+  flakes.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 5 + 1,
+    d: Math.random() * numFlakes,
+    speed: Math.random() * 1 + 0.5,
+    opacity: Math.random() * 0.5 + 0.3,
+    sway: Math.random() * 2 + 1,
+    swayAngle: Math.random() * Math.PI * 2
+  });
+}
+
+function drawSnow(){
+  ctx.clearRect(0,0,width,height);
+  for(let i = 0; i < numFlakes; i++){
+    let f = flakes[i];
+    let gradient = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r);
+    gradient.addColorStop(0, `rgba(255,255,255,${f.opacity})`);
+    gradient.addColorStop(0.5, `rgba(255,255,255,${f.opacity/2})`);
+    gradient.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+    ctx.fill();
+  }
+  moveSnow();
+}
+
+let angle = 0;
+
+function moveSnow(){
+  angle += 0.01;
+  for(let i = 0; i < numFlakes; i++){
+    let f = flakes[i];
+    f.y += Math.cos(angle + f.d) + 1 + f.speed;
+    f.x += Math.sin(f.swayAngle + angle) * f.sway;
+    f.swayAngle += 0.01;
+
+    if(f.x > width + 5 || f.x < -5 || f.y > height){
+      flakes[i] = {
+        x: Math.random()*width,
+        y: -10,
+        r: f.r,
+        d: f.d,
+        speed: f.speed,
+        opacity: f.opacity,
+        sway: f.sway,
+        swayAngle: Math.random() * Math.PI * 2
+      };
+    }
+  }
+}
+
+setInterval(drawSnow, 33);
+
+// FLAME EFFECT - Flicker + Smoke
+const canvasFlame = document.getElementById('flame');
+const ctxFlame = canvasFlame.getContext('2d');
+canvasFlame.width = 200;
+canvasFlame.height = 200;
+
+let particles = [];
+let smoke = [];
+
+function createParticle(){
+  particles.push({
+    x: canvasFlame.width/2 + (Math.random()*20-10),
+    y: canvasFlame.height,
+    r: Math.random() * 6 + 4,
+    dx: Math.random() * 1 - 0.5,
+    dy: Math.random() * -2 - 1,
+    alpha: 1
+  });
+}
+
+function createSmoke(){
+  smoke.push({
+    x: canvasFlame.width/2 + (Math.random()*40-20),
+    y: canvasFlame.height,
+    r: Math.random()*8 + 4,
+    dx: Math.random()*0.5-0.25,
+    dy: Math.random()*-1-0.5,
+    alpha: Math.random()*0.3+0.2
+  });
+}
+
+function drawFlame(){
+  ctxFlame.clearRect(0,0,canvasFlame.width,canvasFlame.height);
+  
+  for(let i = 0; i < particles.length; i++){
+    let p = particles[i];
+    ctxFlame.beginPath();
+    let gradient = ctxFlame.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+    gradient.addColorStop(0, `rgba(255,255,200,${p.alpha})`);
+    gradient.addColorStop(0.5, `rgba(255,100,0,${p.alpha*0.6})`);
+    gradient.addColorStop(1, `rgba(255,0,0,0)`);
+    ctxFlame.fillStyle = gradient;
+    ctxFlame.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctxFlame.fill();
+
+    p.x += p.dx + Math.sin(Date.now()/200 + i)*0.5;
+    p.y += p.dy;
+    p.r *= 0.96;
+    p.alpha *= 0.96;
+    if(p.alpha < 0.05) particles.splice(i,1);
+  }
+
+  for(let i = 0; i < smoke.length; i++){
+    let s = smoke[i];
+    ctxFlame.beginPath();
+    let gradient = ctxFlame.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r);
+    gradient.addColorStop(0, `rgba(200,200,200,${s.alpha})`);
+    gradient.addColorStop(1, 'rgba(200,200,200,0)');
+    ctxFlame.fillStyle = gradient;
+    ctxFlame.arc(s.x, s.y, s.r, 0, Math.PI*2);
+    ctxFlame.fill();
+
+    s.x += s.dx + Math.sin(Date.now()/500 + i)*0.3;
+    s.y += s.dy;
+    s.r *= 0.99;
+    s.alpha *= 0.97;
+    if(s.alpha < 0.02) smoke.splice(i,1);
+  }
+}
+
+function animateFlame(){
+  createParticle();
+  if(Math.random() < 0.4) createSmoke();
+  drawFlame();
+  requestAnimationFrame(animateFlame);
+}
+
+animateFlame();
+</script>
+</body>
+</html>
