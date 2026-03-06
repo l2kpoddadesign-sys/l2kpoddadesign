@@ -1,0 +1,24 @@
+body { margin:0; font-family:Arial,sans-serif; background:linear-gradient(to bottom,#fceabb,#f8b500); color:#222; text-align:center; overflow-x:hidden; }
+header { background:#000; color:#fff; padding:20px; position:relative; z-index:2; }
+header .logo { height:80px; margin-bottom:10px; }
+.hero { padding:50px 20px; color:#fff; position:relative; z-index:2; }
+.contact-btn { display:inline-block; margin-top:20px; padding:15px 30px; background:#000; color:#fff; text-decoration:none; border-radius:8px; transition:0.3s; }
+.contact-btn:hover { background:#444; }
+
+/* Services */
+.services { padding:50px 20px; background:#fff; }
+.services .cards { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; }
+.services .card { background:#f8b500; color:#fff; padding:20px; border-radius:10px; width:200px; font-weight:bold; transition:0.3s; cursor:pointer; }
+.services .card:hover { transform:scale(1.05); }
+
+/* Gallery */
+.gallery { padding:50px 20px; background:#222; color:#fff; }
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; }
+.gallery-grid img { width:100%; border-radius:10px; }
+
+/* Snow */
+.snow { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+.snowflake { position:absolute; top:-10px; color:#fff; font-size:1em; user-select:none; animation-name:fall; animation-iteration-count:infinite; animation-timing-function:linear; }
+@keyframes fall { 0% { transform:translateY(0) } 100% { transform:translateY(100vh) } }
+
+footer { padding:20px; background:#222; color:#fff; position:relative; z-index:2; }

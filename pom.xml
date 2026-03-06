@@ -1,0 +1,62 @@
+l2k-podda-website/
+├── src/main/java/com/l2kpodda/
+│   ├── controller/
+│   │   └── HomeController.java
+│   └── L2kPoddaWebsiteApplication.java
+├── src/main/resources/
+│   ├── static/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   ├── js/
+│   │   │   └── snow.js
+│   │   └── images/
+│   │       └── logo.png
+│   └── templates/
+│       └── index.html
+└── pom.xml<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.l2kpodda</groupId>
+    <artifactId>l2k-podda-website</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+</project>package com.l2kpodda;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class L2kPoddaWebsiteApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(L2kPoddaWebsiteApplication.class, args);
+    }
+}package com.l2kpodda.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HomeController {
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("brandName", "L2K & PODDA DESIGN");
+        return "index";
+    }
+}
