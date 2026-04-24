@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>INFINITY RP - Hack Report</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #0f172a, #020617);
+            color: white;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 25px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 20px #00ffff;
+        }
+
+        h2 {
+            text-align: center;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #020617;
+            color: white;
+            outline: none;
+            border: 1px solid #00ffff;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            box-shadow: 0 0 10px #00ffff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #00ffff;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00cccc;
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <!-- ඔයාගේ logo එක මෙතන replace කරන්න -->
+        <img src="logo.png">
+    </div>
+
+    <h2>INFINITY RP REPORT</h2>
+
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+        
+        <label>Your Name</label>
+        <input type="text" name="username" required>
+
+        <label>Hacker Name</label>
+        <input type="text" name="hacker" required>
+
+        <label>Hack Type</label>
+        <select name="hacktype" required>
+            <option value="">Select Hack</option>
+            <option>Aimbot</option>
+            <option>Wallhack</option>
+            <option>Speed Hack</option>
+            <option>Teleport</option>
+            <option>God Mode</option>
+            <option>Money Hack</option>
+            <option>Other</option>
+        </select>
+
+        <label>Other Hack</label>
+        <input type="text" name="otherhack">
+
+        <label>Description</label>
+        <textarea name="description" required></textarea>
+
+        <label>Upload Video Proof</label>
+        <input type="file" name="video" accept="video/*" required>
+
+        <button type="submit">🚨 Submit Report</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Rules</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="rules.html">Rules</a>
+    <a href="report.html">Report</a>
+</nav>
+
+<div class="container">
+<h2>Server Rules</h2>
+
+<ul>
+<li>No hacking ❌</li>
+<li>No abusing ❌</li>
+<li>Respect admins ✅</li>
+<li>No spamming ❌</li>
+<li>Follow RP rules ✅</li>
+</ul>
+
+</div>
+
+</body>
+</html>
