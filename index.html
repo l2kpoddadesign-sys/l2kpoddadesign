@@ -1,0 +1,322 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INFINITY CINEMA</title>  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #000;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(0,0,0,0.9);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      font-size: 35px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: red;
+    }
+
+    .search {
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: 1px solid #333;
+      background: #111;
+      color: white;
+      width: 250px;
+    }
+
+    .hero {
+      height: 90vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+      url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1600&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      padding: 60px;
+    }
+
+    .hero-content h1 {
+      font-size: 80px;
+      line-height: 90px;
+      margin-top: 20px;
+    }
+
+    .hero-content p {
+      margin-top: 20px;
+      color: #ccc;
+      max-width: 600px;
+      font-size: 18px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-watch {
+      background: white;
+      color: black;
+    }
+
+    .btn-list {
+      background: #222;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 50px;
+    }
+
+    .section h2 {
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+
+    .movies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #111;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: 0.3s;
+      border: 1px solid #222;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      color: gold;
+      margin-bottom: 15px;
+    }
+
+    .watch-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: red;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      border-top: 1px solid #222;
+      color: #777;
+    }
+
+    @media(max-width:768px) {
+      nav {
+        padding: 15px;
+      }
+
+      .logo {
+        font-size: 25px;
+      }
+
+      .search {
+        width: 140px;
+      }
+
+      .hero {
+        padding: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 50px;
+        line-height: 55px;
+      }
+
+      .section {
+        padding: 20px;
+      }
+    }
+  </style></head>
+<body>  <nav>
+    <div class="logo"><span>INFINITY</span> CINEMA</div>
+    <input type="text" class="search" placeholder="Search Movies...">
+  </nav>  <section class="hero">
+    <div class="hero-content">
+      <span style="background:red;padding:10px 20px;border-radius:30px;font-weight:bold;">
+        🔥 TRENDING NOW
+      </span><h1>WATCH<br>UNLIMITED<br>MOVIES</h1>
+
+  <p>
+    Watch the latest movies, anime, horror and action cinema content anytime with INFINITY CINEMA.
+  </p>
+
+  <div class="buttons">
+    <button class="btn btn-watch">▶ WATCH NOW</button>
+    <button class="btn btn-list">+ MY LIST</button>
+  </div>
+</div>
+
+  </section>  <section class="section">
+    <h2>Trending Movies</h2><div class="movies">
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=1200&auto=format&fit=crop">
+    <div class="card-content">
+      <h3>Cyber City</h3>
+      <div class="rating">⭐ 9.1</div>
+      <button class="watch-btn">Watch Movie</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1200&auto=format&fit=crop">
+    <div class="card-content">
+      <h3>Dark Night</h3>
+      <div class="rating">⭐ 9.3</div>
+      <button class="watch-btn">Watch Movie</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200&auto=format&fit=crop">
+    <div class="card-content">
+      <h3>Infinity Warzone</h3>
+      <div class="rating">⭐ 9.5</div>
+      <button class="watch-btn">Watch Movie</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?q=80&w=1200&auto=format&fit=crop">
+    <div class="card-content">
+      <h3>Shadow Hunter</h3>
+      <div class="rating">⭐ 9.0</div>
+      <button class="watch-btn">Watch Movie</button>
+    </div>
+  </div>
+
+</div>
+
+  </section>  <footer>
+    © 2026 INFINITY CINEMA — All Rights Reserved
+  </footer></body>
+</html>
+
+<script>
+const API_KEY = "beefd3fc9f9d0a7487889bd54fde9a95";
+
+// Trending movies API
+const URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+
+const movieContainer = document.getElementById("movies");
+
+// 🔥 Load trending movies
+async function loadMovies(){
+  try {
+    const res = await fetch(URL);
+    const data = await res.json();
+
+    movieContainer.innerHTML = "";
+
+    data.results.forEach(movie => {
+      movieContainer.innerHTML += `
+        <div class="card">
+          <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+          <div class="card-content">
+            <h3>${movie.title}</h3>
+            <div class="rating">⭐ ${movie.vote_average}</div>
+            <button class="watch-btn">Watch Movie</button>
+          </div>
+        </div>
+      `;
+    });
+
+  } catch (error) {
+    console.log("Error loading movies", error);
+  }
+}
+
+loadMovies();
+
+// 🔍 Search function (same design)
+document.getElementById("search").addEventListener("input", async (e)=>{
+  let query = e.target.value;
+
+  if(query.length < 2){
+    loadMovies();
+    return;
+  }
+
+  const searchURL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`;
+
+  const res = await fetch(searchURL);
+  const data = await res.json();
+
+  movieContainer.innerHTML = "";
+
+  data.results.forEach(movie => {
+    movieContainer.innerHTML += `
+      <div class="card">
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">
+        <div class="card-content">
+          <h3>${movie.title}</h3>
+          <div class="rating">⭐ ${movie.vote_average}</div>
+          <button class="watch-btn">Watch Movie</button>
+        </div>
+      </div>
+    `;
+  });
+});
+</script>
