@@ -1,0 +1,179 @@
+<!-- ========================= -->
+<!-- player.html -->
+<!-- ========================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Player</title>
+
+<style>
+
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:Arial;
+}
+
+/* TOP BAR */
+
+.topbar{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  z-index:100;
+  background:rgba(0,0,0,0.7);
+}
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:red;
+}
+
+.back{
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  background:red;
+  color:white;
+  cursor:pointer;
+}
+
+/* VIDEO */
+
+.player{
+  width:100%;
+  height:100vh;
+  background:black;
+}
+
+video{
+  width:100%;
+  height:100vh;
+  object-fit:cover;
+}
+
+/* INFO */
+
+.info{
+  position:absolute;
+  bottom:60px;
+  left:40px;
+  max-width:600px;
+}
+
+.info h1{
+  font-size:45px;
+}
+
+.info p{
+  color:#ccc;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+
+  <div class="logo">
+    <span>INFINITY</span> CINEMA
+  </div>
+
+  <button class="back" onclick="history.back()">
+    ⬅ Back
+  </button>
+
+</div>
+
+<div class="player">
+
+  <video id="videoPlayer" controls autoplay>
+
+    <source id="videoSource" type="video/mp4">
+
+  </video>
+
+</div>
+
+<div class="info">
+
+  <h1 id="title">Loading...</h1>
+
+  <p id="desc"></p>
+
+</div>
+
+<script>
+
+/* ========================= */
+/* TMDB */
+/* ========================= */
+
+const API_KEY =
+  "beefd3fc9f9d0a7487889bd54fde9a95";
+
+const BASE =
+  "https://api.themoviedb.org/3";
+
+/* ========================= */
+/* GET URL PARAMS */
+/* ========================= */
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const id = params.get("id");
+
+const video = params.get("video");
+
+/* ========================= */
+/* LOAD MOVIE */
+/* ========================= */
+
+async function loadMovie(){
+
+  // VIDEO
+
+  document.getElementById("videoSource")
+  .src = video;
+
+  document.getElementById("videoPlayer")
+  .load();
+
+  // MOVIE DETAILS
+
+  const res = await fetch(
+    `${BASE}/movie/${id}?api_key=${API_KEY}`
+  );
+
+  const movie = await res.json();
+
+  document.getElementById("title")
+  .innerText = movie.title;
+
+  document.getElementById("desc")
+  .innerText = movie.overview;
+
+}
+
+/* ========================= */
+
+loadMovie();
+
+</script>
+
+</body>
+</html>
