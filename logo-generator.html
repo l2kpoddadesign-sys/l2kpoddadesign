@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L2K Logo Generator</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    .bg{
+      position:fixed;
+      width:100%;
+      height:100%;
+      top:0;
+      left:0;
+      z-index:-1;
+      background:
+      radial-gradient(circle at top left,#5b21b6,transparent 30%),
+      radial-gradient(circle at bottom right,#06b6d4,transparent 30%),
+      #050816;
+    }
+
+    .container{
+      width:100%;
+      max-width:1200px;
+      margin:auto;
+      padding:120px 20px;
+    }
+
+    .title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .title h1{
+      font-size:60px;
+      background:linear-gradient(to right,#fff,#00d9ff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      margin-bottom:15px;
+    }
+
+    .title p{
+      color:#cbd5e1;
+    }
+
+    .generator-box{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .controls{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:40px;
+      border-radius:25px;
+      backdrop-filter:blur(15px);
+    }
+
+    .controls h2{
+      margin-bottom:25px;
+      font-size:28px;
+    }
+
+    .input-group{
+      margin-bottom:20px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:10px;
+      color:#cbd5e1;
+    }
+
+    input,
+    select{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:15px;
+      background:rgba(255,255,255,0.08);
+      color:white;
+      outline:none;
+      font-size:15px;
+    }
+
+    option{
+      color:black;
+    }
+
+    .btn{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:50px;
+      background:linear-gradient(135deg,#06b6d4,#8b5cf6);
+      color:white;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.4s;
+      margin-top:15px;
+    }
+
+    .btn:hover{
+      transform:translateY(-5px);
+      box-shadow:0 0 30px rgba(0,217,255,0.4);
+    }
+
+    .logo-preview{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:500px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:30px;
+      backdrop-filter:blur(15px);
+      padding:40px;
+    }
+
+    .logo-box{
+      width:350px;
+      height:350px;
+      border-radius:30px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size:60px;
+      font-weight:800;
+      text-align:center;
+      padding:20px;
+      transition:0.4s;
+      background:linear-gradient(135deg,#06b6d4,#8b5cf6);
+      box-shadow:0 0 40px rgba(0,217,255,0.2);
+    }
+
+    @media(max-width:900px){
+      .generator-box{
+        grid-template-columns:1fr;
+      }
+
+      .title h1{
+        font-size:40px;
+      }
+
+      .logo-box{
+        width:260px;
+        height:260px;
+        font-size:45px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="container">
+
+  <div class="title">
+    <h1>LOGO GENERATOR</h1>
+    <p>Create your own stylish logo instantly.</p>
+  </div>
+
+  <div class="generator-box">
+
+    <div class="controls">
+      <h2>Customize Your Logo</h2>
+
+      <div class="input-group">
+        <label>Logo Text</label>
+        <input type="text" id="logoText" placeholder="Enter Brand Name" value="L2K">
+      </div>
+
+      <div class="input-group">
+        <label>Font Size</label>
+        <input type="range" id="fontSize" min="30" max="100" value="60">
+      </div>
+
+      <div class="input-group">
+        <label>Choose Style</label>
+        <select id="styleSelect">
+          <option value="style1">Blue Purple</option>
+          <option value="style2">Pink Neon</option>
+          <option value="style3">Gaming Red</option>
+          <option value="style4">Luxury Gold</option>
+        </select>
+      </div>
+
+      <button class="btn" onclick="generateLogo()">
+        GENERATE LOGO
+      </button>
+
+    </div>
+
+    <div class="logo-preview">
+      <div class="logo-box" id="logoBox">
+        L2K
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  function generateLogo(){
+
+    const text = document.getElementById('logoText').value;
+    const size = document.getElementById('fontSize').value;
+    const style = document.getElementById('styleSelect').value;
+
+    const logoBox = document.getElementById('logoBox');
+
+    logoBox.innerHTML = text;
+    logoBox.style.fontSize = size + 'px';
+
+    if(style === 'style1'){
+      logoBox.style.background = 'linear-gradient(135deg,#06b6d4,#8b5cf6)';
+      logoBox.style.color = 'white';
+    }
+
+    if(style === 'style2'){
+      logoBox.style.background = 'linear-gradient(135deg,#ec4899,#8b5cf6)';
+      logoBox.style.color = 'white';
+    }
+
+    if(style === 'style3'){
+      logoBox.style.background = 'linear-gradient(135deg,#ef4444,#7f1d1d)';
+      logoBox.style.color = 'white';
+    }
+
+    if(style === 'style4'){
+      logoBox.style.background = 'linear-gradient(135deg,#facc15,#ca8a04)';
+      logoBox.style.color = '#111';
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
+
+<div class="logo-preview">
+
+  <div>
+
+    <div class="logo-box" id="logoBox">
+      L2K
+    </div>
+
+    <button class="btn" onclick="downloadLogo()" style="margin-top:25px;">
+      DOWNLOAD PNG
+    </button>
+
+  </div>
+
+</div>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
