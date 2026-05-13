@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L2K CREATIONS STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0f1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        html { scroll-behavior: smooth; }
+
+        #flameCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .hero, nav, section, footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.show { opacity: 1; transform: translateY(0); }
+        .fade-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-left.show { opacity: 1; transform: translateX(0); }
+        .fade-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-right.show { opacity: 1; transform: translateX(0); }
+        
+        nav {
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.8s ease;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #3B82F6;
+            letter-spacing: 1px;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6); }
+        }
+        
+        nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
+        nav a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3B82F6;
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        nav a:hover, nav a.active { color: #3B82F6; }
+        
+        .hero {
+            text-align: center;
+            padding: 8rem 5% 6rem;
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.15) 0%, #0a0f1a 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
+        }
+        
+        .hero-content { position: relative; z-index: 2; }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5rem;
+            color: #3B82F6;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 0 0 50px rgba(59, 130, 246, 0.6);
+        }
+        
+        .hero h3 { animation: fadeInUp 1s ease 0.1s both; }
+        .hero p {
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+        
+        .btn-group { 
+            display: flex; 
+            gap: 1rem; 
+            justify-content: center; 
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn {
+            padding: 0.9rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .btn:hover::before { left: 100%; }
+        
+        .btn-primary {
+            background: #3B82F6;
+            color: #fff;
+            box-shadow: 0 5px 25px rgba(59, 130, 246, 0.4);
+        }
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #3B82F6;
+            border: 1.5px solid #3B82F6;
+        }
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .about-section, .gallery-section, .pricing-section, .feedback-section { 
+            padding: 3rem 5% 5rem; 
+        }
+        
+        .about-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            padding: 3rem;
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            transition: 0.4s;
+        }
+        .about-card:hover {
+            border-color: #3B82F6;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .about-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 7rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #3B82F6, #60A5FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .gallery-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #3B82F6;
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+        .gallery-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
+        }
+        .gallery-card:hover .gallery-img img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-content { padding: 1.5rem; }
+        .gallery-content span {
+            color: #3B82F6;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: left;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #3B82F6, #60A5FA);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        .pricing-card:hover::before { transform: scaleX(1); }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            border-color: #3B82F6;
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.25);
+        }
+        
+        .pricing-card .price {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #3B82F6;
+            margin: 1rem 0;
+            transition: 0.3s;
+        }
+        .pricing-card:hover .price { transform: scale(1.1); }
+        
+        .feedback-card {
+            background: #111827;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            transition: 0.4s;
+        }
+        .feedback-card:hover {
+            border-color: #3B82F6;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .stars { 
+            color: #fbbf24;
+            animation: starTwinkle 2s ease-in-out infinite;
+        }
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        
+        footer {
+            background: #0a0f1a;
+            border-top: 1px solid #1e293b;
+            padding: 2rem 5%;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-card { flex-direction: column; text-align: center; }
+            .section-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="flameCanvas"></canvas>
+
+    <nav>
+        <div class="logo">L2K CREATIONS</div>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="generator.html">Free Logo Generator</a></li>
+            <li><a href="#gallery">Examples</a></li>
+            <li><a href="#services">Service Center</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+            <li><a href="https://wa.me/94740682507" target="_blank">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h3 style="color: #3B82F6; font-size: 0.8rem; letter-spacing: 3px;">✦ HELLO EVERYONE, I AM</h3>
+            <h1>L2K CREATIONS</h1>
+            <p>Type Your Logo, Make Your Style</p>
+            <div class="btn-group">
+                <a href="generator.html" class="btn btn-primary">✦ Get Free</a>
+                <a href="https://wa.me/94740682507" target="_blank" class="btn btn-secondary">Get Premium →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="about-card fade-up">
+            <div class="about-logo fade-left">L2K</div>
+            <div class="about-text fade-right">
+                <h4 style="color: #3B82F6; font-size: 0.75rem; letter-spacing: 3px;">ABOUT</h4>
+                <h2 style="font-family: 'Orbitron', sans-serif; font-size: 3rem; color: #3B82F6; margin-bottom: 1rem;">My Identity</h2>
+                <p style="color: #94a3b8; line-height: 1.8;">L2K Creations | Gaming Logo Specialist - FF | PUBG | CODM | FiveM - Fast Delivery | Pro Quality</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+        <div class="gallery-header fade-up">
+            <p class="section-label" style="color: #3B82F6; font-size: 0.75rem; letter-spacing: 3px; font-weight: 600; margin-bottom: 0.5rem;">HERE SOME</p>
+            <div class="section-header-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem;">
+                <h2 style="font-size: 2.5rem;">Simple Examples I Created</h2>
+                <a href="https://wa.me/94740682507" target="_blank" style="color: #3B82F6;">View all →</a>
+            </div>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-card fade-up" style="transition-delay: 0.1s;">
+                <div class="gallery-img">
+                    <img src="jersey1.jpg" alt="Jersey 1">
+                </div>
+                <div class="gallery-content">
+                    <span>SHIRT DESIGNS</span>
+                    <h3>Jersey 1</h3>
+                </div>
+            </div>
+            <div class="gallery-card fade-up" style="transition-delay: 0.2s;">
+                <div class="gallery-img">
+                    <img src="jersey2.jpg" alt="Jersey 2">
+                </div>
+                <div class="gallery-content">
+                    <span>SHIRT DESIGNS</span>
+                    <h3>Jersey 2</h3>
+                </div>
+            </div>
+            <div class="gallery-card fade-up" style="transition-delay: 0.3s;">
+                <div class="gallery-img">
+                    <img src="post1.jpg" alt="Post 1">
+                </div>
+                <div class="gallery-content">
+                    <span>POSTS</span>
+                    <h3>Post 1</h3>
+                </div>
+            </div>
+            <div class="gallery-card fade-up" style="transition-delay: 0.4s;">
+                <div class="gallery-img">
+                    <img src="post2.jpg" alt="Post 2">
+                </div>
+                <div class="gallery-content">
+                    <span>POSTS</span>
+                    <h3>Post 2</h3>
+                </div>
+            </div>
+            <div class="gallery-card fade-up" style="transition-delay: 0.5s;">
+                <div class="gallery-img">
+                    <img src="social1.jpg" alt="Social 1">
+                </div>
+                <div class="gallery-content">
+                    <span>SOCIAL MEDIA</span>
+                    <h3>Social 1</h3>
+                </div>
+            </div>
+            <div class="gallery-card fade-up" style="transition-delay: 0.6s;">
+                <div class="gallery-img">
+                    <img src="social2.jpg" alt="Social 2">
+                </div>
+                <div class="gallery-content">
+                    <span>SOCIAL MEDIA</span>
+                    <h3>Social 2</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="services">
+        <div class="pricing-header fade-up">
+            <p class="section-label" style="color: #3B82F6; font-size: 0.75rem; letter-spacing: 3px; font-weight: 600; margin-bottom: 0.5rem;">SERVICE CENTER</p>
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Pricing Highlights</h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card fade-up" style="transition-delay: 0.1s;">
+                <h4>GAMING LOGOS</h4>
+                <div class="price">100 –<br>200 <span style="font-size: 1rem;">LKR</span></div>
+                <p>Clan & profile identities</p>
+            </div>
+            <div class="pricing-card fade-up" style="transition-delay: 0.2s;">
+                <h4>CUSTOM SOCIAL LOGOS</h4>
+                <div class="price">150 –<br>300 <span style="font-size: 1rem;">LKR</span></div>
+                <p>Tailored brand identity</p>
+            </div>
+            <div class="pricing-card fade-up" style="transition-delay: 0.3s;">
+                <h4>T-SHIRT & JERSEY</h4>
+                <div class="price">350 –<br>400 <span style="font-size: 1rem;">LKR</span></div>
+                <p>Esports & physical merch</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="feedback-section" id="feedback">
+        <div class="feedback-header fade-up" style="text-align: center;">
+            <p class="section-label" style="color: #3B82F6; font-size: 0.75rem; letter-spacing: 3px; font-weight: 600; margin-bottom: 0.5rem;">CUSTOMER LOVE</p>
+            <h2 style="font-size: 2.5rem;">What People Say</h2>
+            <p style="color: #94a3b8;">Average rating: <span style="color: #fbbf24;">5.0 ★</span></p>
+        </div>
+        <div class="feedback-card fade-up">
+            <div class="feedback-user" style="display: flex; align-items: center; gap: 1rem;">
+                <div class="user-avatar" style="width: 50px; height: 50px; border-radius: 50%; background: #3B82F6; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">👤</div>
+                <div>
+                    <h4>GamerPro_LK</h4>
+                    <div class="stars">★★★</div>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; color: #94a3b8;">Best logo maker for gamers! Fast and clean.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3 style="font-family: 'Orbitron', sans-serif; color: #3B82F6;">L2K CREATIONS</h3>
+                <p style="color: #64748b;">Type your dream, make your style.</p>
+            </div>
+            <div class="footer-center" style="color: #64748b;">
+                © 2026 L2K Creations. All designs reserved.
+            </div>
+            <div class="footer-right">
+                <a href="https://wa.me/94740682507" target="_blank" style="color: #3B82F6; text-decoration: none;">💬 +94 74 068 2507</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up, .fade-left, .fade-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        const canvas = document.getElementById('flameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 20;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = Math.random() * 2 + 1;
+                this.speedX = (Math.random() - 0.5) * 1.5;
+                this.alpha = Math.random() * 0.5 + 0.3;
+                this.decay = Math.random() * 0.01 + 0.005;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.x += this.speedX;
+                this.alpha -= this.decay;
+                this.x += Math.sin(this.y * 0.01) * 0.5;
+                if (this.alpha <= 0 || this.y < -20) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + 20;
+                    this.alpha = Math.random() * 0.5 + 0.3;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3);
+                gradient.addColorStop(0, `rgba(59, 130, 246, ${this.alpha})`);
+                gradient.addColorStop(0.5, `rgba(59, 130, 246, ${this.alpha * 0.5})`);
+                gradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+                ctx.fillStyle = gradient;
+                ctx.arc(this.x, this.y, this.size * 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        });
+    </script>
+</body>
+</html>
